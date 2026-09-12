@@ -203,6 +203,7 @@ def build(github_url):
     p("Assignment 1", "SmallText")
     p("Builder Pattern for Travel Packages", "HeadingA")
     p("Java implementation and design report", "SmallText")
+    p("<b>Student:</b> Assem Tugelbay<br/><b>Group:</b> SE-2540")
     h("Introduction")
     p("This project implements the Builder design pattern for a travel package. "
       "The same construction steps produce an immutable <b>TravelPackage</b> object "
@@ -356,7 +357,7 @@ def build(github_url):
                            leftMargin=54, rightMargin=54,
                            topMargin=43, bottomMargin=48,
                            title="Builder Pattern for Travel Packages",
-                           author="", subject="Assignment 1 Java Builder Pattern")
+                           author="Assem Tugelbay", subject="Assignment 1 Java Builder Pattern")
     doc.build(story, onFirstPage=footer, onLaterPages=footer)
     print(output)
 

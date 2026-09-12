@@ -1,0 +1,29 @@
+=== CITY BREAK: OBJECT ===
+TravelPackage{destination='Prague', days=3, accommodation=HOTEL, transport=TRAIN, activities=[Old Town walking tour, Prague Castle visit]}
+=== CITY BREAK: TEXT ===
+TRAVEL ITINERARY
+Destination: Prague
+Duration: 3 days
+Accommodation: Hotel
+Transport: Train
+Activities:
+  - Old Town walking tour
+  - Prague Castle visit
+
+=== ADVENTURE TRIP: OBJECT ===
+TravelPackage{destination='Almaty', days=5, accommodation=GUESTHOUSE, transport=MINIBUS, activities=[Mountain hike, Lake visit]}
+=== ADVENTURE TRIP: TEXT ===
+TRAVEL ITINERARY
+Destination: Almaty
+Duration: 5 days
+Accommodation: Guesthouse
+Transport: Minibus
+Activities:
+  - Mountain hike
+  - Lake visit
+
+=== CUSTOM FLUENT PACKAGE ===
+TravelPackage{destination='Kyoto', days=4, accommodation=HOTEL, transport=FLIGHT, activities=[Temple walk, Food market visit]}
+
+=== INVALID BUILD ===
+Build rejected: Destination must not be blank.

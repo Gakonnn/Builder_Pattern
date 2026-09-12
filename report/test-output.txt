@@ -1,0 +1,13 @@
+PASS: All fluent steps return the same builder
+PASS: Both builders reject missing and invalid fields
+PASS: City break has matching object and text values
+PASS: Adventure trip has matching object and text values
+PASS: Director uses the same five interface steps
+PASS: Mutable input lists are copied by both builders
+PASS: Product activities cannot be modified
+PASS: Builder reuse preserves old products and replaces activities
+PASS: Destination and activity whitespace is normalized
+PASS: Every getResult validates current state
+PASS: Product exposes no public construction or mutable fields
+PASS: Concrete fluent chains expose the right result types
+All 12 tests passed.

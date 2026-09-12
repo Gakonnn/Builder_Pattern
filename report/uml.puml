@@ -1,0 +1,72 @@
+@startuml
+title Builder Pattern for Travel Packages
+skinparam classAttributeIconSize 0
+hide empty members
+
+class Main {
+  +{static} main(args : String[]) : void
+}
+class TravelDirector {
+  +makeCityBreak(builder : TravelBuilder) : TravelBuilder
+  +makeAdventureTrip(builder : TravelBuilder) : TravelBuilder
+}
+interface TravelBuilder {
+  +setDestination(destination : String) : TravelBuilder
+  +setDays(days : int) : TravelBuilder
+  +setAccommodation(accommodation : Accommodation) : TravelBuilder
+  +setTransport(transport : Transport) : TravelBuilder
+  +setActivities(activities : List<String>) : TravelBuilder
+}
+class TravelPackageObjectBuilder {
+  -draft : TravelDraft
+  +getResult() : TravelPackage
+}
+class ItineraryBuilder {
+  -draft : TravelDraft
+  +getResult() : String
+}
+class TravelPackage <<immutable>> {
+  -destination : String {readOnly}
+  -days : int {readOnly}
+  -accommodation : Accommodation {readOnly}
+  -transport : Transport {readOnly}
+  -activities : List<String> {readOnly}
+  ~TravelPackage(draft : TravelDraft)
+  +getDestination() : String
+  +getDays() : int
+  +getAccommodation() : Accommodation
+  +getTransport() : Transport
+  +getActivities() : List<String>
+}
+class TravelDraft <<package private>> {
+  -destination : String
+  -days : int
+  -accommodation : Accommodation
+  -transport : Transport
+  -activities : List<String>
+  ~validate() : void
+}
+class String <<text itinerary>>
+enum Accommodation
+enum Transport
+
+Main ..> TravelDirector : uses
+Main ..> TravelBuilder : configures
+Main ..> TravelPackageObjectBuilder : creates
+Main ..> ItineraryBuilder : creates
+TravelDirector ..> TravelBuilder : calls shared steps
+TravelPackageObjectBuilder ..|> TravelBuilder
+ItineraryBuilder ..|> TravelBuilder
+TravelPackageObjectBuilder ..> TravelPackage : creates
+ItineraryBuilder ..> String : creates
+TravelPackageObjectBuilder *-- TravelDraft
+ItineraryBuilder *-- TravelDraft
+TravelPackage ..> TravelDraft : copies validated state
+TravelPackage --> Accommodation
+TravelPackage --> Transport
+note bottom of TravelBuilder
+  Both concrete builders implement all five setters
+  with covariant return types and return this.
+  getResult is deliberately outside this interface.
+end note
+@enduml

@@ -39,12 +39,15 @@ Every step returns the same builder. Setters can be called in any order. Each pr
 - `DEFENSE_RU.md` - Russian explanation and practice questions for the defense.
 - `tools/build_report.py` - optional PDF rebuild tool; requires Python and ReportLab.
 
-## GitHub publication
+## GitHub repository
 
-The project has incremental local Git commits. Push is deferred at the user's request; no GitHub URL has been invented. After publishing, regenerate the report with the real repository URL before submitting the PDF to Moodle:
+Repository: [Gakonnn/Builder_Pattern](https://github.com/Gakonnn/Builder_Pattern).
+
+The PDF includes this repository URL. To regenerate the report, install ReportLab and run:
 
 ```sh
-python tools/build_report.py --github-url https://github.com/OWNER/REPOSITORY
+python3 -m pip install reportlab
+python3 tools/build_report.py
 ```
 
-Replace the example address with the actual repository URL. The report can also be regenerated without that option while publication is pending. Java compilation and execution do not require Python.
+The rebuild tool uses this repository URL by default. Use `--github-url https://github.com/OWNER/REPOSITORY` to override it for a fork. Java compilation and execution do not require Python.

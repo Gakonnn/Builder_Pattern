@@ -19,6 +19,7 @@ from reportlab.platypus import (
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src/main/java/edu/builder/travel"
+GITHUB_URL = "https://github.com/Gakonnn/Builder_Pattern"
 INK = colors.HexColor("#17212B")
 MUTED = colors.HexColor("#536170")
 BLUE = colors.HexColor("#EAF0F5")
@@ -338,13 +339,8 @@ def build(github_url):
       "rules consistent. The additional classes and setter delegation add some code, "
       "but make the two representations and their responsibilities explicit.")
     h("Repository and submission")
-    if github_url:
-        p('GitHub repository: <link href="' + escape(github_url, {'"': '&quot;'}) +
-          '" color="#245A81">' + escape(github_url) + '</link>')
-    else:
-        p("<b>GitHub link pending.</b> Publication is deferred. The local project "
-          "includes incremental Git commits; add the real repository URL to this "
-          "report after the code is pushed and before submitting the PDF to Moodle.")
+    p('GitHub repository: <link href="' + escape(github_url, {'"': '&quot;'}) +
+      '" color="#245A81">' + escape(github_url) + '</link>')
     p("The source package includes a short README, the Java implementation, a test "
       "runner, this report, editable UML source and Russian notes for the in-class defense.")
 
@@ -367,8 +363,8 @@ def build(github_url):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--github-url")
+    parser.add_argument("--github-url", default=GITHUB_URL)
     args = parser.parse_args()
-    if args.github_url and not re.fullmatch(r"https://github\.com/[\w.-]+/[\w.-]+/?", args.github_url):
+    if not re.fullmatch(r"https://github\.com/[\w.-]+/[\w.-]+/?", args.github_url):
         parser.error("Use a full https://github.com/owner/repository URL")
     build(args.github_url)
